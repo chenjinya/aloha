@@ -1,0 +1,606 @@
+body{
+	 	transition: background 1s;
+
+}
+@keyframes app-sound-icon-frames
+{
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.app-sound-icon{
+	background: url(../image/sound-off.png);
+	background-size: cover;
+	width:2em;
+	height:2em;
+	position: absolute;
+	top: 8em;
+	right:1em;
+	z-index: 999999;
+}
+
+@keyframes banner-shining
+{
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: .5;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+
+
+
+
+
+ .banner-section{
+ 	width: 100%;
+ 	height: 100%;
+ 	vertical-align: middle;
+ 	
+ 	position: absolute;
+ 	left: 0;
+ 	top: 0;
+ }
+ .banner-1{
+ 	width: 100%;
+ 	margin: auto;
+ 	position: absolute;
+ 	top:0;
+ 	bottom:0;
+
+ 	left:0;
+ 	opacity: 0;
+ 	transition: opacity .5s;
+ }
+ .banner-2{
+ 	width: 100%;
+ 	margin: auto;
+ 	position: absolute;
+ 	top:0;
+ 	bottom:0;
+ 	left:0;
+ 	opacity: 0;
+ 	transition: opacity 1s;
+ }
+ .banner-2-fadeOut{
+ 	opacity: 1;
+ }
+
+.scene{
+	color: #FFF;
+}
+.scene-1{
+	transition: null;
+}
+.scene-2{
+	background: url(../image/scene-2-background.png);
+	background-size: cover;
+}
+
+.scene-2-banner, .scene-2-people, .scene-2-smoke {
+	width: 100%;
+
+}
+.scene-2-people {
+	position: absolute;
+	bottom: -40em;
+}
+
+.scene-2-banner {
+	position: absolute;
+	top: 60em;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.scene-2-smoke {
+	position: absolute;
+	bottom: -20em;
+}
+
+
+.scene-2-shade{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 0;
+}
+
+.scene-2-shade-1{
+	left: 0;
+
+}
+.scene-2-shade-2{
+	right: 0;
+	
+}
+
+
+.scene-3{
+	
+}
+.scene-3-bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../image/scene-3-background.png);
+	background-size: cover;
+	opacity: 0;
+}
+.scene-3-poster{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	opacity: 0;
+}
+.scene-3-light{
+	position: absolute;
+	top: -20%;
+	height: 150%;
+	opacity: .7;
+	transition: rotate 1s;
+}
+
+.scene-3-light-1{
+	left: -50%;
+	transform-origin: 50% 0;
+	transform: rotate(-90deg);
+
+}
+.scene-3-light-2{
+	right: -50%;
+
+	transform-origin: 50% 0;
+	transform: rotate(90deg);
+	
+}
+
+.scene-4{
+	background: url(../image/scene-4-gogoboy-bg.png);
+	background-size: cover;
+}
+.scene-4-poster{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+@keyframes gogoboy-strong{
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.scene-4-poster-s{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	animation: gogoboy-strong 4s infinite;
+}
+.scene-5{
+	background: url(../image/scene-4-gogoboy-bg.png);
+	background-size: cover;
+}
+.scene-5-poster{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.scene-6{
+	background: #413f3d;
+}
+
+@keyframes scene-6-map-animate {
+	0%{
+		transform: scale(2) rotateZ(80deg) translate3d(0em, 0em, -10em);
+	}
+	40%{
+		transform: scale(.9) rotateZ(-1deg) translate3d(0em, 0em, -10em);
+	}
+	45%{
+		transform: rotateZ(1deg) translate3d(0em, 0em, -10em);
+	}
+	50%{
+		transform: rotateZ(0deg) translate3d(0em, 0em, -10em);
+	}
+
+	55%{
+		transform: rotateZ(0deg) translate3d(0em, 0em, -10em);
+	}
+
+	60%{
+		transform: scale(.9)  rotateZ(0deg) translate3d(0, -1em, -10em);
+	}
+
+	70%{
+		transform: scale(1)  rotateZ(0) translate3d(0em, 0em, -10em);
+	}
+
+	75%{
+		transform: translate3d(0em, -1em, -10em);
+	}
+
+	82%{
+		transform: translate3d(0, 0em, -10em);
+	}
+
+	85%{
+		transform: translate3d(0, 0em, -10em);
+	}
+	98%{
+		transform: translate3d(0, 0em, -10em);
+	}
+
+	95%{
+		transform: translate3d(0, 0em, -10em);
+	}
+
+	100%{
+		transform: translate3d(0, 0em, -10em);
+	}
+	
+
+}
+
+@keyframes scene-6-point-animate {
+	0%{
+		transform: rotateY(0deg) translateY(-2em);
+	}
+	10%{
+		transform: rotateY(90deg) translate(0, -3em);
+	}
+	20%{
+		transform: rotateY(180deg) translate(0, -4em);
+	}
+	30%{
+		transform: rotateY(270deg) translate(0, -4em);
+	}
+	40%{
+		transform: rotateY(360deg) translateY(-4em);
+	}
+	45%{
+		transform: scaleY(.9) translateY(-5em);
+	}
+	50%{
+		transform: scaleY(1) translateY(-4em);
+	}
+	60%{
+		transform: translateY(1em);
+	}
+
+	70%{
+		transform: translateY(0em);
+	}
+
+	
+	100%{
+		transform: translateY(0em);
+
+	}
+
+}
+
+@keyframes scene-6-location-info-frames {
+	0%{
+		transform:  translateY(0em);
+		
+	}
+
+	40%{
+		transform:  translateY(2em);
+	}
+
+	80%{
+		transform:  translateY(-1em);
+	}
+	
+	100%{
+		transform: translateY(0em);
+
+	}
+}
+
+.scene-6-location{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	transform-style: preserve-3d;
+
+}
+
+
+
+.scene-6-map{
+	width: 150%;
+	margin-left: -25%;
+	height: 100%;
+	background: url(../image/scene-6-map.png) center 55%;
+	background-size: 190%;
+	//background-size: 100% 100%;
+	transform: scale(2) rotateZ(80deg) translateZ(-10em);
+	//perspective: 200em;
+	//animation: scene-6-map-animate 6s linear forwards ;
+
+}
+
+.scene-6-point{
+	width: 30%;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    opacity: 0;
+    z-index: 20000;
+    //perspective: 1em;
+    transform: translate3d(0, -2em,100em);
+}
+
+.scene-6-title{
+	width: 100%;
+	position: absolute;
+	top: 5%;
+	left: 0;
+}
+
+
+
+.scene-6-location-info{
+	width: 100%;
+	position: absolute;
+	opacity: 0;
+	top:50%;
+	left: 0;
+	text-align: center;
+	z-index: 1;
+}
+
+.scene-6-location-img{
+	width: 100%;
+
+	z-index: 0;
+
+}
+
+.scene-6-location-more{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 85%;
+	width: 10em;
+	opacity: 0;
+	z-index: 1;
+}
+
+.scene-6-pics-wrap{
+	position: absolute;
+    left: 0;
+    width: 100%;
+    height: 16em;
+    top: 45%;
+    opacity: 0;
+}
+
+
+.scene-6-location-ret{
+	position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 84%;
+	width: 10em;
+	opacity: 0;
+}
+.pics-wrap-btn-left{
+	width: 4em;
+	height:4em;
+	background: url(../image/pics/btn-left.png);
+	background-size: cover;
+	position: absolute;
+	left: 8%;
+    top: 6em;
+    z-index:2;
+}
+.pics-wrap-btn-right{
+	width: 4em;
+	height:4em;
+	background: url(../image/pics/btn-right.png);
+	background-size: cover;
+	position: absolute;
+	right: 8%;
+    top: 6em;
+    z-index:2;
+}
+
+.pics-list{
+	position: relative;
+	white-space:nowrap;
+}
+.pics-item{
+	opacity: .7;
+	width: 65%;
+    margin: 0 auto;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+
+.pics-list-text{
+    text-align: center;
+    position: relative;
+}
+.pics-item-text{
+	display: none;
+	height: 2em;
+	margin: 0 auto;
+	opacity: 0;
+
+}
+.pics-item-show{
+	width: 28em;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.scene-7{
+	overflow: hidden;
+	background: url(../image/scene-4-gogoboy-bg.png);
+
+}
+.scene-7-wrap{
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+    width: 100%;
+
+	
+}
+.scene-7-ticket{
+	position: absolute;;
+	width: 100%;
+}
+.ticket-href-section{
+	position: absolute;;
+	background: #5b5a58;
+	background: url(../image/scene-4-gogoboy-bg.png);
+	padding-bottom:5em;
+
+
+}
+.ticket-img{
+	width: 50%;
+    margin: 0;
+    padding: 0;
+    float: left;
+
+}
+
+.scene-8{
+	background: url(../image/scene-4-gogoboy-bg.png);
+}
+.scene-8-banner{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.scene-9{
+	background: url(../image/scene-4-gogoboy-bg.png);
+}
+.scene-9-bg{
+	width: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+}
+.scene-9-left{
+	width:48%;
+	position: absolute;
+	left: -50%;
+	top: 16%;
+
+
+}
+.scene-9-right{
+	width:48%;
+	position: absolute;
+	right: -50%;
+	top: 16%;
+	
+}
+
+.page-wrap{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+	opacity: 0;
+}
+.page-horn-1{
+	position: absolute;
+	left: 1em;
+	top: 1em;
+	width: 6em;
+	z-index: 9999999;
+}
+.page-horn-2{
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	width: 5em;
+	z-index: 9999999;
+}
+.page-horn-3{
+	position: absolute;
+	left: 1em;
+	bottom: 1em;
+	width: 6em;
+	z-index: 9999999;
+}
+.page-horn-4{
+	position: absolute;
+	right: 1em;
+	bottom: 1em;
+	width: 6em;
+	z-index: 9999999;
+}
+
+.scene-10{
+
+}
+.scene-10 video {
+	display: block;
+	width: 100%;
+    height: 100%;
+}
+.play-video-btn{
+	position: absolute;
+	width: 20%;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
