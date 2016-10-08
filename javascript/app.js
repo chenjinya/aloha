@@ -61,12 +61,30 @@ App.prototype= {
         var map = {};
         var resourceIndex = 0;
         var resourceCount = 0;
-        resource = resource ? resource : [];
+        var needLoadResource = [];
+        var noLoadResource = [];
+        if(resource){
+            needLoadResource = resource['preload'] ? resource['preload'] : [];
+            noLoadResource = resource['noload'] ? resource['noload'] : [];
+        }
+        var resource = needLoadResource;
         var loadingResource = $("[pre-src]");
         loadingResource.each(function(index,that){
             var item = $(that);
             resource.push(item.attr("pre-src"));
         });
+        console.log(resource);
+        for(var i in noLoadResource){
+            var url = noLoadResource[i];
+            var it = needLoadResource.indexOf(url);
+            console.log(url,it);
+            if(-1 == it) {
+                continue;
+            } else {
+                needLoadResource.splice(it, 1);
+            }
+        }
+
         for(var i in resource){
             var item = resource[i];
             map[i] = {

@@ -14,9 +14,16 @@ var soundFn = function(e,status){
         soundStatus = true;
     }
 }
-//ls image/ | awk {'print "\"./image/"$1"\","'}
 
-app.loading([],function(i,c){
+app.loading({
+    loading: [],
+    noload: [
+        "./image/support-banner2.png",
+        "./image/9-bg.png",
+        "./image/gogo-1.png",
+        "./image/gogo-2.png"
+    ],
+},function(i,c){
    if(i == c) {
     $(".app-loading").remove();
    }
@@ -34,34 +41,14 @@ function(){
    var scrollPre = 0;
    var scrollTop = 0;
    var scrollStep = 1;
-   var sceneArr= [];
-   for(var i=1 ;i <= 10; i++){
-        if(i != 2) {
-            sceneArr.push(".scene-" + i);
-        } else {
-            continue;
-        }
-        
-   }
-   var sceneStr = sceneArr.join(",");
-   console.log(sceneStr, sceneArr);
-   $(sceneStr).on("touchmove", function(e){
+   
+   $("[touch-sensitive]").on("touchmove", function(e){
         if(e.changedTouches[0].clientY - scrollPre < 0){
-            console.log('swipeup')
             scrollTop -= scrollStep;
            
         } else {
-            console.log('swipedown')
             scrollTop += scrollStep;
-            ///return true;
         }
-        //console.log(rt);
-        // if(rt > moveDegree){
-        //     return false;
-
-        // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
-        //     return false;
-        // }
         $(this).css({
             top: scrollTop + "%",
         });
