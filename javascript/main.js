@@ -524,40 +524,46 @@ app.addAction({
         // })      
         $(".page-horn-4").hide();
                 
+
         var sceneIndex = 7;
-        var rx = 0,ry = 0;
-        var rt = 0;
+        var scrollPre = 0;
+        var scrollTop = 0;
         var reachTop = 0;
         var reachBottom = 0;
-        var moveDegree = 2;
+        var scrollStep = 1;
+        var maxTop = 0;
+        var emBasePx =  parseInt($(".ticket-href-section").css("font-size"));
+        scrollStep = scrollStep * emBasePx;
+
         $(".ticket-href-section").css({
-                top: rt,
+                top: scrollTop,
             });
         $(".ticket-href-section")
         .on("touchstart", function(e){
-            console.log(e);
+            //console.log(e);
         })
         .on("touchend", function(e){
-            console.log(e);
-            if(rt > moveDegree && 0 == reachTop){
-                app.prev();
+            //console.log(e);
+            // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
+            maxTop = $(window).height() - $(".ticket-href-section").height();
+            console.log('max top',maxTop);
+            if(scrollTop > scrollStep && 0 == reachTop){
                 reachTop = 1;
-
-            } else if(0 == reachBottom && rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
-                
-                app.next();
+                app.prev();
+            } else if(0 == reachBottom && scrollTop  <   maxTop){
                 reachBottom = 1;
+                app.next();
             }
         })
         $(".ticket-href-section").on("touchmove", function(e){
             //console.log(e.changedTouches[0].clientX)
-            if(e.changedTouches[0].clientY - ry < 0){
+            if(e.changedTouches[0].clientY - scrollPre < 0){
                 console.log('swipeup')
-                rt -=moveDegree;
+                scrollTop -= scrollStep;
                
             } else {
                 console.log('swipedown')
-                rt +=moveDegree;
+                scrollTop += scrollStep;
                 ///return true;
             }
             //console.log(rt);
@@ -567,11 +573,11 @@ app.addAction({
             // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
             //     return false;
             // }
-            console.log("rt:",rt);
+            console.log("scrollTop:",scrollTop);
             $(".ticket-href-section").css({
-                top: rt + "%",
+                top: scrollTop + "px",
             });
-            ry = e.changedTouches[0].clientY
+            scrollPre = e.changedTouches[0].clientY
             return false;
             
         });
