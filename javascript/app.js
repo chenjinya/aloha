@@ -57,10 +57,16 @@ App.prototype= {
      * @procFn {Function} load one function
      * @fn      {Function} done function
      */
-    loading: function(resource,procFn, fn){
+    loading: function(resource, procFn, fn){
         var map = {};
         var resourceIndex = 0;
         var resourceCount = 0;
+        resource = resource ? resource : [];
+        var loadingResource = $("[pre-src]");
+        loadingResource.each(function(index,that){
+            var item = $(that);
+            resource.push(item.attr("pre-src"));
+        });
         for(var i in resource){
             var item = resource[i];
             map[i] = {
@@ -97,6 +103,11 @@ App.prototype= {
                                 return true
                             }
                         }
+                        loadingResource.each(function(index,that){
+                            var item = $(that);
+                            item.attr("src", item.attr("pre-src"))
+                        });
+                      
                         //load done
                         console.log('load done');
                         fn && fn();

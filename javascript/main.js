@@ -16,51 +16,7 @@ var soundFn = function(e,status){
 }
 //ls image/ | awk {'print "\"./image/"$1"\","'}
 
-app.loading([
-   "./image/9-0.png",
-    "./image/9-1.png",
-    "./image/9-bg.png",
-    "./image/banner-1.png",
-    "./image/banner-2.png",
-    //"./image/images",
-    "./image/loading-logo.png",
-    "./image/location-info.png",
-    "./image/location-title.png",
-    "./image/pics/btn-left.png",
-    "./image/pics/btn-right.png",
-    "./image/pics/more-btn.png",
-    "./image/pics/pic1.png",
-    "./image/pics/pic2.png",
-    "./image/pics/pic3.png",
-    "./image/pics/pic4.png",
-    "./image/pics/ret-btn.png",
-    "./image/pics/text1.png",
-    "./image/pics/text2.png",
-    "./image/pics/text3.png",
-    "./image/point.png",
-    "./image/scene-2-0.png",
-    "./image/scene-2-1.png",
-    "./image/scene-2-2.png",
-    "./image/scene-2-background.png",
-    // "./image/scene-2-shade.png",
-    // "./image/scene-2-shade2.png",
-    "./image/scene-3-2.png",
-    "./image/scene-3-background.png",
-    "./image/scene-3-light.png",
-    "./image/scene-3-light2.png",
-    "./image/gogo-1.png",
-    "./image/gogo-2.png",
-    "./image/scene-5-dj.png",
-    "./image/scene-6-map.png",
-    "./image/support-banner2.png",
-    "./image/ticket/ticket-1.jpg",
-    "./image/ticket/ticket-2.jpg",
-    "./image/ticket/ticket-3.jpg",
-    "./image/ticket/ticket-4.jpg",
-    "./image/ticket/ticket-5.jpg",
-    "./image/ticket/ticket-6.jpg",
-    "./image/ticket.png",
-], function(i,c){
+app.loading([],function(i,c){
    if(i == c) {
     $(".app-loading").remove();
    }
@@ -69,9 +25,7 @@ app.loading([
 
 function(){ 
    app.init();
-   
-   
-  
+
    $(".app-sound-icon").show().on("click", soundFn );
    $(window).one("touchend", function(){
         //soundFn();
