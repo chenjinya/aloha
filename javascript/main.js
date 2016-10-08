@@ -108,14 +108,20 @@ app.addAction( {
             //app.enableSwipe();
             $bannerSecion.find(".banner-1").css({ opacity: 1 });
             setTimeout(function(){ 
-
-                $bannerSecion.find(".banner-2").animate({
-                    opacity: 1,
-                }, function(){
-                    $bannerSecion.find(".banner-2").css({ 
-                        animation: "banner-shining 4s ease-in-out infinite",
-                    });
-                })
+                if(!$.os.iphone){
+                    $bannerSecion.find(".banner-2").css({
+                        opacity: 1,
+                    })
+                } else {
+                    $bannerSecion.find(".banner-2").animate({
+                        opacity: 1,
+                    }, function(){
+                        $bannerSecion.find(".banner-2").css({ 
+                            animation: "banner-shining 4s ease-in-out infinite",
+                        });
+                    })
+                }
+                
                
                 $("body").css({
                     background: "#0f090a",
