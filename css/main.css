@@ -1,4 +1,7 @@
 body{
+	//background: url(../image/scene-4-gogoboy-bg.jpg);
+
+	background-size: cover;
 	 	transition: background 1s;
 
 }
@@ -92,6 +95,7 @@ body{
 	color: #FFF;
 }
 .scene-1{
+	background: #252222;
 	transition: null;
 }
 .scene-2{
@@ -186,7 +190,7 @@ body{
 }
 
 .scene-4{
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 	background-size: cover;
 }
 
@@ -221,7 +225,7 @@ body{
 	animation: gogoboy-strong 4s infinite;
 }
 .scene-5{
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 	background-size: cover;
 }
 .scene-5-poster{
@@ -497,7 +501,7 @@ body{
 
 .scene-7{
 	overflow: hidden;
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 
 }
 .scene-7-wrap{
@@ -517,7 +521,7 @@ body{
 .ticket-href-section{
 	position: absolute;;
 	background: #5b5a58;
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 	padding-bottom:5em;
 
 
@@ -531,7 +535,7 @@ body{
 }
 
 .scene-8{
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 }
 .scene-8-banner{
 	width: 100%;
@@ -541,7 +545,7 @@ body{
 }
 
 .scene-9{
-	background: url(../image/scene-4-gogoboy-bg.png);
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 }
 .scene-9-bg{
 	width: 100%;

@@ -84,55 +84,57 @@ App.prototype= {
                 needLoadResource.splice(it, 1);
             }
         }
+        setTimeout(function(){
+            for(var i in resource){
+                var item = resource[i];
+                map[i] = {
+                    status: 0,
+                };
+                resourceCount ++;
 
-        for(var i in resource){
-            var item = resource[i];
-            map[i] = {
-                status: 0,
-            };
-            resourceCount ++;
+                var op = {
+                    type: 'image',
+                    src: '',
+                }
+                if(typeof item == "string"){
+                    op.src = item;
+                } else {
+                    op = item;
+                }
 
-            var op = {
-                type: 'image',
-                src: '',
-            }
-            if(typeof item == "string"){
-                op.src = item;
-            } else {
-                op = item;
-            }
+                op.type = op.type? op.type : 'image';
+                if(op.type == 'image'){
+                    var img = new Image();
+                    img.src = op.src;
+                    img.onload= (function(_i, _img){
+                       
+                        return function(e){
+                            //console.log(arguments)
+                             resourceIndex ++;
+                            //console.log(resourceIndex, resourceCount);
+                            procFn && procFn(resourceIndex, resourceCount);
+                            map[_i].status= 1;
 
-            op.type = op.type? op.type : 'image';
-            if(op.type == 'image'){
-                var img = new Image();
-                img.src = op.src;
-                img.onload= (function(_i, _img){
-                   
-                    return function(e){
-                        //console.log(arguments)
-                         resourceIndex ++;
-                        //console.log(resourceIndex, resourceCount);
-                        procFn && procFn(resourceIndex, resourceCount);
-                        map[_i].status= 1;
-
-                        var done = false;
-                        for(var mpi in map){
-                            if(map[mpi].status == 0) {
-                                return true
+                            var done = false;
+                            for(var mpi in map){
+                                if(map[mpi].status == 0) {
+                                    return true
+                                }
                             }
+                            loadingResource.each(function(index,that){
+                                var item = $(that);
+                                item.attr("src", item.attr("pre-src"))
+                            });
+                          
+                            //load done
+                            console.log('load done');
+                            fn && fn();
                         }
-                        loadingResource.each(function(index,that){
-                            var item = $(that);
-                            item.attr("src", item.attr("pre-src"))
-                        });
-                      
-                        //load done
-                        console.log('load done');
-                        fn && fn();
-                    }
-                })(i,img)
+                    })(i,img)
+                }
             }
-        }
+        },1);
+        
         
     },
     /*
@@ -233,6 +235,9 @@ App.prototype= {
         if(this.currentSceneNum > sceneNum) {
             return this.prev(sceneNum,force);
         }
+        // this.sceneDOMs.eq(this.currentSceneNum).one(this.currentSceneNum, function(){
+        //     $(this).hide();
+        // });
         if( true == force){
             this.scrollNext(sceneNum);
         } else if(this.execAction.next && typeof this.execAction.next == 'function'){
@@ -252,6 +257,10 @@ App.prototype= {
         if(this.currentSceneNum < sceneNum) {
             return this.next(sceneNum,force);
         }
+        // this.sceneDOMs.eq(this.currentSceneNum).one(this.currentSceneNum, function(){
+        //     $(this).hide();
+        // });
+
         if( true == force){
             this.scrollPrev(sceneNum);
         } else if(this.execAction.prev && typeof this.execAction.prev == 'function'){
@@ -262,6 +271,7 @@ App.prototype= {
             return ;
         } else {
             this.scrollPrev(sceneNum);
+
         }
         this.loop(sceneNum);
         this.bindEvent();
