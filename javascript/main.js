@@ -166,6 +166,9 @@ app.addAction({
         //scene 1
         console.log('scene 1');
         var sceneIndex = 1;
+        $(".page-wrap").css({
+            opacity: 1,
+        })
 
         //$("body").attr("style",'');
         $(".scene-2-smoke").animate({

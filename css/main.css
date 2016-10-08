@@ -179,6 +179,12 @@ body{
 	background: url(../image/scene-4-gogoboy-bg.png);
 	background-size: cover;
 }
+
+.scene-4-title{
+	top: 10%;
+	width: 100%;
+	position: absolute;;
+}
 .scene-4-poster{
 	width: 100%;
 	position: absolute;
