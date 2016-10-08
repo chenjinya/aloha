@@ -191,9 +191,11 @@ App.prototype= {
         .off("swipeUp")
         .off("swipeDown")
         .one("swipeUp", function(e){
+            console.log('app swiptup');
             if(self.swipeable) self.next();
         })
         .one("swipeDown", function(e){
+            console.log('app swiptdown');
             if(self.swipeable) self.prev();
         });
     },

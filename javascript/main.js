@@ -74,7 +74,46 @@ function(){
   
    $(".app-sound-icon").show().on("click", soundFn );
    $(window).one("touchend", function(){
-        soundFn();
+        //soundFn();
+   });
+
+   var scrollPre = 0;
+   var scrollTop = 0;
+   var scrollStep = 1;
+   var sceneArr= [];
+   for(var i=1 ;i <= 10; i++){
+        if(i != 2) {
+            sceneArr.push(".scene-" + i);
+        } else {
+            continue;
+        }
+        
+   }
+   var sceneStr = sceneArr.join(",");
+   console.log(sceneStr, sceneArr);
+   $(sceneStr).on("touchmove", function(e){
+        if(e.changedTouches[0].clientY - scrollPre < 0){
+            console.log('swipeup')
+            scrollTop -= scrollStep;
+           
+        } else {
+            console.log('swipedown')
+            scrollTop += scrollStep;
+            ///return true;
+        }
+        //console.log(rt);
+        // if(rt > moveDegree){
+        //     return false;
+
+        // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
+        //     return false;
+        // }
+        $(this).css({
+            top: scrollTop + "%",
+        });
+        scrollPre = e.changedTouches[0].clientY
+   }).on("touchstart", function(e){
+        scrollTop = 0;
    });
 
 });

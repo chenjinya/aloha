@@ -2,6 +2,16 @@ body{
 	 	transition: background 1s;
 
 }
+
+[page-scroll-body]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	//transition: top 1s;
+}
+
 @keyframes app-sound-icon-frames
 {
 	0% {
