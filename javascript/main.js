@@ -566,6 +566,7 @@ app.addAction({
         var reachBottom = 0;
         var scrollStep = 1;
         var maxTop = 0;
+        var moveStart = 0;
         var emBasePx =  parseInt($(".ticket-href-section").css("font-size"));
         scrollStep = scrollStep * emBasePx;
 
@@ -575,6 +576,7 @@ app.addAction({
         $(".ticket-href-section")
         .on("touchstart", function(e){
             //console.log(e);
+            moveStart = e.changedTouches[0].clientY;
         })
         .on("touchend", function(e){
             //console.log(e);
@@ -589,9 +591,14 @@ app.addAction({
                 app.next();
             }
         })
-        $(".ticket-href-section").on("touchmove", function(e){
+        .on("touchmove", function(e){
             //console.log(e.changedTouches[0].clientX)
-            if(e.changedTouches[0].clientY - scrollPre < 0){
+            var move = e.changedTouches[0].clientY - moveStart;
+            var moveLength = Math.abs(move);
+            if(moveLength < 10){
+                return false;
+            }
+            if(move < 0){
                 console.log('swipeup')
                 scrollTop -= scrollStep;
                
