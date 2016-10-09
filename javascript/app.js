@@ -73,11 +73,11 @@ App.prototype= {
             var item = $(that);
             resource.push(item.attr("pre-src"));
         });
-        console.log(resource);
+        //console.log(resource);
         for(var i in noLoadResource){
             var url = noLoadResource[i];
             var it = needLoadResource.indexOf(url);
-            console.log(url,it);
+           // console.log(url,it);
             if(-1 == it) {
                 continue;
             } else {
@@ -194,6 +194,7 @@ App.prototype= {
         this.currentSceneDepth = this.sceneDatas[sceneNum]["depth"];
         this.execAction = this.sceneActions[this.currentSceneNo];
         this.execAction.init && this.execAction.init();
+        this.bindEvent();
         this.execAction.run && this.execAction.run();
         this.sceneDones[sceneNum] = true;
         if(this.auto){
@@ -342,14 +343,13 @@ App.prototype= {
         } else if(this.execAction.next && typeof this.execAction.next == 'function'){
             this.execAction.next(function(){
                 self.loop(sceneNum);
-                self.bindEvent();
             });
             return ;
         } else {
+            console.log("auto next");
             this.scrollNext(sceneNum);
         }
         this.loop(sceneNum);
-        this.bindEvent();
     },
     prev: function(sceneNum,force){
         var self = this;
@@ -365,15 +365,14 @@ App.prototype= {
         } else if(this.execAction.prev && typeof this.execAction.prev == 'function'){
             this.execAction.prev(function(){
                 self.loop(sceneNum);
-                self.bindEvent();
             });
             return ;
         } else {
+            console.log("auto prev");
             this.scrollPrev(sceneNum);
 
         }
         this.loop(sceneNum);
-        this.bindEvent();
     },
     //common
     scrollNext: function(nextIndex, fn, speed){

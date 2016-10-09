@@ -537,9 +537,10 @@ app.addAction({
 
        
         console.log('scene 7');  
-        // app.sceneDOMs.eq(6).css({
-        //     top: 0,
-        // })      
+            
+        $(window)
+        .off("swipeUp")
+        .off("swipeDown");
         $(".page-horn-4").hide();
                 
 
@@ -604,19 +605,22 @@ app.addAction({
                 //console.log(e);
                 // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
                 
-                console.log('max top',maxTop);
+                console.log('max top',maxTop,scrollTop,reachTop,reachBottom);
                 if(scrollTop > 5 && 0 == reachTop){
                     reachTop = 1;
                     app.prev();
                 } else if(0 == reachBottom && scrollTop  <   maxTop){
                     reachBottom = 1;
                     app.next();
+                } else {
+
                 }
             })
             .on("touchmove", function(e){
                 //e.preventDefault();
                 //console.log(e.changedTouches[0].clientX)
                 var move = e.changedTouches[0].clientY - moveStart;
+                console.log("move", move)
                 var moveLength = Math.abs(move);
                 if(moveLength < 10){
                     return false;
@@ -663,6 +667,11 @@ app.addAction({
         
     }, 
     init: function(){
+        $(".ticket-href-section")
+        .off("touchstart")
+        .off("touchmove")
+        .off("touchend");
+        
         $(".page-horn-4").hide();
     },
     next: function(){
