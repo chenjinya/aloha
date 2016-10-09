@@ -623,14 +623,14 @@ app.addAction({
                 if(move < 0){
                     console.log('swipeup')
                     if(scrollTop <app.window.height -  $(this).height()  ){
-                        return;
+                        return false;
                     }
                     scrollTop -= scrollStep;
                     
                 } else {
                     console.log('swipedown')
                     if(scrollTop < scrollStep && scrollTop >0){
-                        return;
+                        return false;
                     }
                     scrollTop += scrollStep;
                     ///return true;
