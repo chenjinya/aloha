@@ -52,49 +52,7 @@ function(){
     });
 
     $(".scene-10").show();
-    var sensitiveDegree = 20;
-    var scrollPre = 0;
-    var scrollTop = 0;
-    var scrollStep = 12;
-    var moveStart = 0;
-    var deltaStep = 30;
-    if(!$.os.iphone){
-        $(".scene-4-poster-s").remove();
-    }
-    // else {
-        $("[touch-sensitive]").on("touchstart", function(e){
-            scrollTop = 0;
-            moveStart = e.changedTouches[0].clientY;
-       })
-       .on("touchmove", function(e){
-            deltaStep = Math.abs(e.changedTouches[0].clientY - moveStart);
-            if(deltaStep < sensitiveDegree){
-                return false;
-            }
-            if(e.changedTouches[0].clientY - moveStart < 0){
-                scrollTop -= scrollStep;
-            } else {
-                if($(this).hasClass("scene-1")){
-                    //return true;
-                } else {
-                    scrollTop += scrollStep;
-                }
-            }
-            $(this).css({
-                transform: "translateY(" + scrollTop + "px" + ")",
-            });
-            //scrollPre = e.changedTouches[0].clientY
-       }).on("touchend", function(e){
-            if(deltaStep < 30){
-                $(this).animate({
-                    translateY: 0,
-                });
-            }
-            
-            
-       });
-    // }
-   
+ 
 
 });
 
@@ -155,12 +113,12 @@ app.addAction( {
                     app.next(7,true);
                 });
                 $(".page-horn-4").on("click", function(){
-                    if(app.currentSceneNum != 7){
+                    if(app.currentSceneNo != 7){
                         app.next(7,true);
                     }
                 })
                 $(".page-horn-2").on("click", function(){
-                    if(app.currentSceneNum != 0){
+                    if(app.currentSceneNo != 0){
                         app.next(0,true);
                     }
                 })
@@ -319,6 +277,7 @@ app.addAction({
         if(!$.os.iphone){ 
             return true;
         }
+        $(".scene-3-poster").attr("style",'');
         $(".scene-3-light-1").attr("style",'');
         $(".scene-3-light-2").attr("style",'');
     },
@@ -342,18 +301,18 @@ app.addAction({
         //scene 3
         if(!$.os.iphone){ 
             $(".scene-9-left").css({
-                left: '0%',
+                left: '0',
             })
             $(".scene-9-right").css({
-                right: '0%',
+                right: '0',
             })
         } else {
             setTimeout(function(){
                 $(".scene-9-left").animate({
-                    left: '0%',
+                    translateX: '0',
                 }, 200)
                 $(".scene-9-right").animate({
-                    right: '0%',
+                    translateX: '0',
                 }, 200)
             },500);
         }
@@ -366,8 +325,13 @@ app.addAction({
         if(!$.os.iphone){ 
             return true;
         }
-        $(".scene-9-right").attr("style",'');
-        $(".scene-9-left").attr("style",'');
+        $(".scene-9-left").css({
+            transform: 'translateX(-200px)',
+        })
+        $(".scene-9-right").css({
+             transform: 'translateX(200px)',
+        })
+       
     }
 
 });

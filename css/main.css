@@ -170,7 +170,7 @@ body{
 	transition: null;
 }
 .scene-2{
-	
+	background: #1b1b1b;
 }
 
 .scene-2-banner, .scene-2-people, .scene-2-smoke {
@@ -1005,7 +1005,7 @@ body{
 .scene-9-left{
 	width:48%;
 	position: absolute;
-	left: -50%;
+	left: 0;
 	top: 16%;
 
 
@@ -1013,7 +1013,7 @@ body{
 .scene-9-right{
 	width:48%;
 	position: absolute;
-	right: -50%;
+	right: 0;
 	top: 16%;
 	
 }
