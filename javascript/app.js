@@ -163,6 +163,7 @@ App.prototype= {
             $(dom).css({
                 transform: "translateY(" + self.window.height + "px)",
                 zIndex: index * SCENE_DEPTH,
+                visibility: 'visible'
             }).attr("scene-no", index);
 
             if(!self.sceneDatas[index]){
