@@ -248,6 +248,7 @@ body{
 	left:0;
 	right:0;
 	margin: auto ;
+	//transform: translateY(0);
 }
 .loading-center-bg{
 	background: #ff194a;
@@ -302,7 +303,12 @@ body{
  	perspective: 1em;
  	//animation:loading-outer 5s ease-in-out forwards;
  }
-video {
+.aloha-video {
+	display: none;
+	visibility: hidden;
+	z-index: 0;
+}
+.scene-10 {
 	display: none;
 }
 </style>
@@ -452,7 +458,7 @@ video {
 			</div>
 		</div>
 		<div touch-sensitive class="scene scene-10">
-			<video  poster="image/poster.jpg" type="video/mp4"  src="video/aloha.mp4" ></video>
+			<video class="aloha-video" poster="image/poster.jpg" type="video/mp4"  src="video/aloha.mp4" ></video>
 			<img class="play-video-btn" pre-src="./image/play.png" />
 		</div>
 		<div touch-sensitive class="scene scene-8">

@@ -27,10 +27,10 @@ app.loading({
     noload: [
     ],
 },function(i,c){
-   if(i == c) {
-    $(".app-loading").remove();
-   }
-    $(".app-loading").find(".app-loading-bar").html("loading...(" + Math.ceil(i / c * 100 )+ "%)");
+    if(i == c) {
+        $(".app-loading").remove();
+    }
+        $(".app-loading").find(".app-loading-bar").html("loading...(" + Math.ceil(i / c * 100 )+ "%)");
 },
 
 function(){ 
@@ -41,11 +41,11 @@ function(){
         soundFn();
     });
 
-   
+    $(".scene-10").show();
     var sensitiveDegree = 20;
     var scrollPre = 0;
     var scrollTop = 0;
-    var scrollStep = 1;
+    var scrollStep = 12;
     var moveStart = 0;
     var deltaStep = 30;
     if(!$.os.iphone){
@@ -70,13 +70,13 @@ function(){
                 }
             }
             $(this).css({
-                top: scrollTop + "%",
+                transform: "translateY(" + scrollTop + "px" + ")",
             });
             //scrollPre = e.changedTouches[0].clientY
        }).on("touchend", function(e){
             if(deltaStep < 30){
                 $(this).animate({
-                    top: 0,
+                    translateY: 0,
                 });
             }
             
@@ -94,6 +94,10 @@ app.addAction( {
         if(app.sceneDones[0]){
             return false;
         } 
+        app.sceneDOMs.eq(0).css({
+            transform: "translateY(0)",
+            visibility: 'visible',
+        });
         //app.disableSwipe();
         var sceneIndex = 0;
         console.log('scene 0');
@@ -150,9 +154,7 @@ app.addAction( {
                     }
                 })
                 
-                app.sceneDOMs.eq(sceneIndex).css({
-                    transition: app.defaultTransition,
-                });
+            
                 $(".page-wrap").css({
                     opacity: 1,
                 })
@@ -180,25 +182,19 @@ app.addAction({
 
         //$("body").attr("style",'');
         if(!$.os.iphone){
-            $(".scene-2-smoke").css({
-                bottom: '0',
-            });
             $(".scene-2-people").css({
-                bottom: '0',
+                translateY: '0',
             });
             $(".scene-2-banner").css({
-                top: '0'
+                translateY: '0'
             });
             
         } else {
-            $(".scene-2-smoke").animate({
-                bottom: '0',
-            },1000);
             $(".scene-2-people").animate({
-                bottom: '0',
+                translateY: '0',
             },1000);
             $(".scene-2-banner").animate({
-                top: '0'
+                translateY: '0'
             },1000);
         }
         
@@ -216,16 +212,13 @@ app.addAction({
         } 
         else 
         {
-            $(".scene-2-smoke").animate({
-                bottom: '-20em',
-                opacity: 0,
-            },1000);
+
             $(".scene-2-people").animate({
-                bottom: '-40em',
+                translateY: '100px',
                 opacity: 0,
             },1000);
             $(".scene-2-banner").animate({
-                top: '-60em',
+                translateY: '-100px',
                 opacity: 0,
             },1000);
         }
@@ -323,7 +316,7 @@ app.addAction({
 
         } else {
             $(".scene-3-poster").animate({
-                top: '-30em,'
+                translateY: '-100px'
             });
         }
         
@@ -331,7 +324,6 @@ app.addAction({
         nx();
     }
  
-   
 });
 
 app.addAction({
@@ -355,7 +347,6 @@ app.addAction({
             },500);
         }
         
-       
         console.log('scene 9');
         var sceneIndex = 9;
 
@@ -443,7 +434,6 @@ app.addAction({
                 });
             },1000);
         }
-        
         
         //轮播图
         var picsIndex = 0;
@@ -586,7 +576,7 @@ app.addAction({
         scrollStep = scrollStep * emBasePx;
 
         $(".ticket-href-section").css({
-            top: scrollTop,
+            transform: "translateY(" + scrollTop + "px" + ")",
         });
         maxTop = $(window).height() - $(".ticket-href-section").height();
 
@@ -595,7 +585,7 @@ app.addAction({
             $(".ticket-href-section")
             .on('swipeUp', function(e){
                 $(this).animate({
-                    top: maxTop,
+                    translateY: maxTop + "px",
                 });
                 
                 if(scrollTop != 0){
@@ -607,10 +597,10 @@ app.addAction({
                 }
                 e.preventDefault();
                 return false;
-                
+
             }).on('swipeDown', function(e){
                 $(this).animate({
-                    top: 0,
+                    translateY: 0,
                 });
                 
                 if(scrollTop != 0){
@@ -669,7 +659,7 @@ app.addAction({
                 // }
                 console.log("scrollTop:",scrollTop);
                 $(".ticket-href-section").css({
-                    top: scrollTop + "px",
+                    transform: "translateY(" + scrollTop + "px" + ")",
                 });
                 scrollPre = e.changedTouches[0].clientY
                 return false;
@@ -723,6 +713,9 @@ app.addAction({
             $(".play-video-btn").show();
         }).on("ended", function(){
 
+        }).css({
+            display: 'block',
+            visibility: 'visible',
         });
         
     },

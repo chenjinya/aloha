@@ -18,9 +18,7 @@ App.prototype= {
 
     //auto slice
     auto: false,
-    //page slice transion
-    defaultTransition: 'top 1s, bottom 1s',
-
+   
     //now scene num
     currentSceneNum: 0,
     //scene zindex base
@@ -161,7 +159,7 @@ App.prototype= {
 
         this.sceneDOMs.each(function(index,dom){
             $(dom).css({
-                top: self.window.height,
+                transform: "translateY(" + self.window.height + "px)",
                 zIndex: index * SCENE_DEPTH,
             });
             if(!self.sceneDatas[index]){
@@ -174,7 +172,7 @@ App.prototype= {
             this.sceneDones[i] = false;
         }
         this.sceneDOMs.eq(0).show().css({
-            top: 0,
+            translateY: 0,
             opacity: 1,
         });
         this.loop();
@@ -283,21 +281,26 @@ App.prototype= {
             speed = "linear";
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum +1;
-
         this.currentSceneNum = nextIndex;
         this.sceneDOMs.eq(nextIndex).css({
-            top: app.window.height,
-            opacity: 1,
+            visibility: "visible",
+            transform: "translateY(" + app.window.height + "px" + ")",
         });
-        
+       
         this.sceneDOMs.eq(sceneIndex).animate({
-            top: - app.window.height,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
+            translateY: - app.window.height + "px",
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            $(this).css({
+                visibility: 'hidden',
+            })
+        });
+
         this.sceneDOMs.eq(nextIndex).animate({
-            top: 0,
+            translateY: 0,
             opacity: 1,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
-        fn && this.sceneDOMs.eq(nextIndex).one(this.animationEnd, fn);
+
+        
     },
     scrollPrev: function(nextIndex, fn, speed){
 
@@ -307,20 +310,25 @@ App.prototype= {
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum -1;
         this.currentSceneNum = nextIndex;
-        this.sceneDOMs.eq(nextIndex).css({
-            top: -app.window.height,
-        });
 
+        this.sceneDOMs.eq(nextIndex).css({
+            visibility: "visible",
+            transform: "translateY(" + (- app.window.height) + "px" + ")",
+        });
+        
         this.sceneDOMs.eq(sceneIndex).animate({
-            top: app.window.height,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
+            translateY: app.window.height + "px",
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            $(this).css({
+                visibility: 'hidden',
+            })
+        });
         this.sceneDOMs.eq(nextIndex).animate({
-            top: 0,
+            translateY: 0,
             opacity: 1,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
         
 
-        fn && this.sceneDOMs.eq(nextIndex).one(this.animationEnd, fn);
     },
 
     fadeInNext: function(nextIndex, fn, speed){
@@ -329,20 +337,26 @@ App.prototype= {
             speed = "linear";
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum +1;
-        this.currentSceneNum = nextIndex;
-        this.sceneDOMs.eq(sceneIndex).animate({
-            opacity: 0,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
-
+       
         this.sceneDOMs.eq(nextIndex).css({
-            top: 0,
+            transform: 'translateY(0)',
             opacity: 0,
+            visibility: 'visible'
         }).animate({
-            top: 0,
             opacity: 1,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
 
-        fn && this.sceneDOMs.eq(nextIndex).one(this.animationEnd, fn);
+        this.currentSceneNum = nextIndex;
+        this.sceneDOMs.eq(sceneIndex).animate({
+            opacity: 0,
+            translateY: 0,
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            $(this).css({
+                visibility: 'hidden',
+            })
+        });
+
+        
     },
     fadeInPrev: function(nextIndex, fn, speed){
         sceneIndex = this.currentSceneNum;
@@ -350,20 +364,26 @@ App.prototype= {
             speed = "linear";
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum -1;
+
+        this.sceneDOMs.eq(nextIndex).css({
+            transform: 'translateY(0)',
+            opacity: 0,
+            visibility: 'visible'
+        }).animate({
+            opacity: 1,
+        }, speed ? speed : TURN_SPEED, 'ease-in-out');
+
         this.currentSceneNum = nextIndex;
    
         this.sceneDOMs.eq(sceneIndex).animate({
             opacity: 0,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
-        this.sceneDOMs.eq(nextIndex).css({
-            top: 0,
-            opacity: 0,
-        }).animate({
-            top: 0,
-            opacity: 1,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
-
-        fn && this.sceneDOMs.eq(nextIndex).one(this.animationEnd, fn);
+            translateY: 0,
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            $(this).css({
+                visibility: 'hidden',
+            })
+        });
+        
     }
 
 }

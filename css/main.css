@@ -181,21 +181,23 @@ body{
 }
 .scene-2-people {
 	position: absolute;
-	bottom: -40em;
+	bottom: 0em;
+	transform: translateY(100px);
 }
 
 .scene-2-banner {
 	position: absolute;
-	top: 60em;
+	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	margin: auto;
+	transform: translateY(-100px);
 }
 
 .scene-2-smoke {
 	position: absolute;
-	bottom: -20em;
+	bottom: 0;
 }
 
 
