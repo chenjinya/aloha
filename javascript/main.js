@@ -603,9 +603,9 @@ app.addAction({
             .on("touchend", function(e){
                 //console.log(e);
                 // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
-                maxTop = $(window).height() - $(".ticket-href-section").height();
+                
                 console.log('max top',maxTop);
-                if(scrollTop > scrollStep && 0 == reachTop){
+                if(scrollTop > 5 && 0 == reachTop){
                     reachTop = 1;
                     app.prev();
                 } else if(0 == reachBottom && scrollTop  <   maxTop){
@@ -614,6 +614,7 @@ app.addAction({
                 }
             })
             .on("touchmove", function(e){
+                //e.preventDefault();
                 //console.log(e.changedTouches[0].clientX)
                 var move = e.changedTouches[0].clientY - moveStart;
                 var moveLength = Math.abs(move);
@@ -622,17 +623,21 @@ app.addAction({
                 }
                 if(move < 0){
                     console.log('swipeup')
-                    if(scrollTop <app.window.height -  $(this).height()  ){
+                    if(scrollTop < maxTop - 10 ){
                         return false;
+                    } else {
+                        scrollTop -= scrollStep;
                     }
-                    scrollTop -= scrollStep;
+                    
                     
                 } else {
                     console.log('swipedown')
-                    if(scrollTop < scrollStep && scrollTop >0){
+                    if( scrollTop > 10){
                         return false;
+                    } else {
+                        scrollTop += scrollStep;
                     }
-                    scrollTop += scrollStep;
+                    
                     ///return true;
                 }
                 //console.log(rt);
