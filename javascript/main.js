@@ -50,7 +50,8 @@ function(){
     var deltaStep = 30;
     if(!$.os.iphone){
         $(".scene-4-poster-s").remove();
-    }else {
+    }
+    // else {
         $("[touch-sensitive]").on("touchstart", function(e){
             scrollTop = 0;
             moveStart = e.changedTouches[0].clientY;
@@ -82,7 +83,7 @@ function(){
             
             
        });
-   }
+    // }
    
 
 });
