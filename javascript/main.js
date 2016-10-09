@@ -7,10 +7,17 @@ var soundFn = function(e,status){
         soundStatus = false;
     } else if(soundStatus == false  || status == 2){
         $(".app-sound")[0].play();
-        $(".app-sound-icon").css({
-            backgroundImage: 'url(./image/sound-on.png)',
-            animation:  'app-sound-icon-frames linear 5s infinite',
-        });
+        if(!$.os.iphone){
+            $(".app-sound-icon").css({
+                backgroundImage: 'url(./image/sound-on.png)',
+            });
+        } else {
+            $(".app-sound-icon").css({
+                backgroundImage: 'url(./image/sound-on.png)',
+                animation:  'app-sound-icon-frames linear 5s infinite',
+            });
+        }
+        
         soundStatus = true;
     }
 }
@@ -27,20 +34,23 @@ app.loading({
 },
 
 function(){ 
-   app.init();
+    app.init();
 
-   $(".app-sound-icon").show().on("click", soundFn );
-   $(window).one("touchend", function(){
+    $(".app-sound-icon").show().on("click", soundFn );
+    $(window).one("touchend", function(){
         soundFn();
-   });
+    });
 
-   var sensitiveDegree = 20;
-   var scrollPre = 0;
-   var scrollTop = 0;
-   var scrollStep = 1;
-   var moveStart = 0;
-   var deltaStep = 30;
-   if($.os.iphone){
+   
+    var sensitiveDegree = 20;
+    var scrollPre = 0;
+    var scrollTop = 0;
+    var scrollStep = 1;
+    var moveStart = 0;
+    var deltaStep = 30;
+    if(!$.os.iphone){
+        $(".scene-4-poster-s").remove();
+    }else {
         $("[touch-sensitive]").on("touchstart", function(e){
             scrollTop = 0;
             moveStart = e.changedTouches[0].clientY;
@@ -367,7 +377,10 @@ app.addAction({
         var sceneIndex = 3;
 
     }, 
-
+    init: function(){
+        
+        
+    }
 });
 
 app.addAction({
@@ -376,7 +389,7 @@ app.addAction({
         console.log('scene 4');
         var sceneIndex = 4;
 
-    }, 
+    }
 
 });
 
@@ -571,57 +584,97 @@ app.addAction({
         scrollStep = scrollStep * emBasePx;
 
         $(".ticket-href-section").css({
-                top: scrollTop,
-            });
-        $(".ticket-href-section")
-        .on("touchstart", function(e){
-            //console.log(e);
-            moveStart = e.changedTouches[0].clientY;
-        })
-        .on("touchend", function(e){
-            //console.log(e);
-            // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
-            maxTop = $(window).height() - $(".ticket-href-section").height();
-            console.log('max top',maxTop);
-            if(scrollTop > scrollStep && 0 == reachTop){
-                reachTop = 1;
-                app.prev();
-            } else if(0 == reachBottom && scrollTop  <   maxTop){
-                reachBottom = 1;
-                app.next();
-            }
-        })
-        .on("touchmove", function(e){
-            //console.log(e.changedTouches[0].clientX)
-            var move = e.changedTouches[0].clientY - moveStart;
-            var moveLength = Math.abs(move);
-            if(moveLength < 10){
-                return false;
-            }
-            if(move < 0){
-                console.log('swipeup')
-                scrollTop -= scrollStep;
-               
-            } else {
-                console.log('swipedown')
-                scrollTop += scrollStep;
-                ///return true;
-            }
-            //console.log(rt);
-            // if(rt > moveDegree){
-            //     return false;
-
-            // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
-            //     return false;
-            // }
-            console.log("scrollTop:",scrollTop);
-            $(".ticket-href-section").css({
-                top: scrollTop + "px",
-            });
-            scrollPre = e.changedTouches[0].clientY
-            return false;
-            
+            top: scrollTop,
         });
+        maxTop = $(window).height() - $(".ticket-href-section").height();
+
+
+        if(!$.os.iphone){
+            $(".ticket-href-section")
+            .on('swipeUp', function(e){
+                $(this).animate({
+                    top: maxTop,
+                });
+                
+                if(scrollTop != 0){
+                    app.next();
+                    $(this).off("swipeUp");
+                } else {
+                    scrollTop = maxTop;
+                    
+                }
+                e.preventDefault();
+                return false;
+                
+            }).on('swipeDown', function(e){
+                $(this).animate({
+                    top: 0,
+                });
+                
+                if(scrollTop != 0){
+                    scrollTop = 0;
+                    
+                } else {
+                    $(this).off("swipeDown");
+                    app.prev();
+                }
+                e.preventDefault();
+                return false;
+                
+                
+            });
+        } else {
+            $(".ticket-href-section")
+            .on("touchstart", function(e){
+                //console.log(e);
+                moveStart = e.changedTouches[0].clientY;
+            })
+            .on("touchend", function(e){
+                //console.log(e);
+                // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
+                maxTop = $(window).height() - $(".ticket-href-section").height();
+                console.log('max top',maxTop);
+                if(scrollTop > scrollStep && 0 == reachTop){
+                    reachTop = 1;
+                    app.prev();
+                } else if(0 == reachBottom && scrollTop  <   maxTop){
+                    reachBottom = 1;
+                    app.next();
+                }
+            })
+            .on("touchmove", function(e){
+                //console.log(e.changedTouches[0].clientX)
+                var move = e.changedTouches[0].clientY - moveStart;
+                var moveLength = Math.abs(move);
+                if(moveLength < 10){
+                    return false;
+                }
+                if(move < 0){
+                    console.log('swipeup')
+                    scrollTop -= scrollStep;
+                   
+                } else {
+                    console.log('swipedown')
+                    scrollTop += scrollStep;
+                    ///return true;
+                }
+                //console.log(rt);
+                // if(rt > moveDegree){
+                //     return false;
+
+                // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
+                //     return false;
+                // }
+                console.log("scrollTop:",scrollTop);
+                $(".ticket-href-section").css({
+                    top: scrollTop + "px",
+                });
+                scrollPre = e.changedTouches[0].clientY
+                return false;
+                
+            });
+        }
+        
 
         // $(".scene-7-wrap").on("touchend", function(){
             
