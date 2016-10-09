@@ -581,41 +581,41 @@ app.addAction({
         maxTop = $(window).height() - $(".ticket-href-section").height();
 
 
-        if(!$.os.iphone){
-            $(".ticket-href-section")
-            .on('swipeUp', function(e){
-                $(this).animate({
-                    translateY: maxTop + "px",
-                });
+        // if(!$.os.iphone){
+        //     $(".ticket-href-section")
+        //     .on('swipeUp', function(e){
+        //         $(this).animate({
+        //             translateY: maxTop + "px",
+        //         });
                 
-                if(scrollTop != 0){
-                    app.next();
-                    $(this).off("swipeUp");
-                } else {
-                    scrollTop = maxTop;
+        //         if(scrollTop != 0){
+        //             app.next();
+        //             $(this).off("swipeUp");
+        //         } else {
+        //             scrollTop = maxTop;
                     
-                }
-                e.preventDefault();
-                return false;
+        //         }
+        //         e.preventDefault();
+        //         return false;
 
-            }).on('swipeDown', function(e){
-                $(this).animate({
-                    translateY: 0,
-                });
+        //     }).on('swipeDown', function(e){
+        //         $(this).animate({
+        //             translateY: 0,
+        //         });
                 
-                if(scrollTop != 0){
-                    scrollTop = 0;
+        //         if(scrollTop != 0){
+        //             scrollTop = 0;
                     
-                } else {
-                    $(this).off("swipeDown");
-                    app.prev();
-                }
-                e.preventDefault();
-                return false;
+        //         } else {
+        //             $(this).off("swipeDown");
+        //             app.prev();
+        //         }
+        //         e.preventDefault();
+        //         return false;
                 
                 
-            });
-        } else {
+        //     });
+        // } else {
             $(".ticket-href-section")
             .on("touchstart", function(e){
                 //console.log(e);
@@ -658,14 +658,13 @@ app.addAction({
                 //     return false;
                 // }
                 console.log("scrollTop:",scrollTop);
-                $(".ticket-href-section").css({
+                $(this).css({
                     transform: "translateY(" + scrollTop + "px" + ")",
                 });
-                scrollPre = e.changedTouches[0].clientY
                 return false;
                 
             });
-        }
+        // }
         
 
         // $(".scene-7-wrap").on("touchend", function(){
