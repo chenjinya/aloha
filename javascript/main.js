@@ -25,6 +25,16 @@ var soundFn = function(e,status){
 app.loading({
     loading: [],
     noload: [
+        "./image/pics/pic1.png",
+        "./image/pics/pic2.png",
+        "./image/pics/pic3.png",
+        "./image/pics/pic4.png",
+        "./image/ticket/ticket-1.jpg",
+        "./image/ticket/ticket-2.jpg",
+        "./image/ticket/ticket-3.jpg",
+        "./image/ticket/ticket-4.jpg",
+        "./image/ticket/ticket-5.jpg",
+        "./image/ticket/ticket-6.jpg",
     ],
 },function(i,c){
     if(i == c) {
