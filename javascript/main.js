@@ -313,7 +313,7 @@ app.addAction({
     }, 
     init: function(){
         if(!$.os.iphone){ 
-            return false;
+            return true;
         }
         $(".scene-3-light-1").attr("style",'');
         $(".scene-3-light-2").attr("style",'');
@@ -547,7 +547,9 @@ app.addAction({
 
     }, 
     init: function(){
-
+        if(!$.os.iphone){ 
+            return true; 
+        }
         $(".scene-6-map").attr("style", '');
         $(".scene-6-point").attr("style", '');
         $(".pics-wrap-btn-left").off("click")
