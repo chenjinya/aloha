@@ -1,6 +1,7 @@
 var app = new App();
 var soundStatus = false;
 var soundFn = function(e,status){
+    console.log("click");
     if(soundStatus == true || status == 1){
         $(".app-sound")[0].pause();
         $(".app-sound-icon").attr("style",'');
@@ -50,7 +51,18 @@ function(){
     $(window).one("touchend", function(){
         soundFn();
     });
+    $(".page-horn-4").on("click", function(){
+        if(app.currentSceneNo != 7){
+            app.next(7,true);
+        }
+    })
+    $(".page-horn-2").on("click", function(){
+        if(app.currentSceneNo != 0){
+            app.next(0,true);
+        }
+    });
 
+    //video bug
     $(".scene-10").show();
  
 
@@ -116,16 +128,7 @@ app.addAction( {
                 $(".scene-1").find(".banner-2").on("click", function(){
                     app.next(7,true);
                 });
-                $(".page-horn-4").on("click", function(){
-                    if(app.currentSceneNo != 7){
-                        app.next(7,true);
-                    }
-                })
-                $(".page-horn-2").on("click", function(){
-                    if(app.currentSceneNo != 0){
-                        app.next(0,true);
-                    }
-                })
+                
                 
             
                 $(".page-wrap").css({
@@ -553,11 +556,11 @@ app.addAction({
         var scrollTop = 0;
         var reachTop = 0;
         var reachBottom = 0;
-        var scrollStep = 1;
+        var scrollStep = app.touchScrollStep;
         var maxTop = 0;
         var moveStart = 0;
         var emBasePx =  parseInt($(".ticket-href-section").css("font-size"));
-        scrollStep = scrollStep * emBasePx;
+       // scrollStep = scrollStep * emBasePx;
 
         $(".ticket-href-section").css({
             transform: "translateY(" + scrollTop + "px" + ")",
@@ -671,6 +674,7 @@ app.addAction({
         
     }, 
     init: function(){
+
         $(".ticket-href-section")
         .off("touchstart")
         .off("touchmove")

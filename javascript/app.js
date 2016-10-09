@@ -20,6 +20,7 @@ App.prototype= {
     auto: false,
 
     touchSensitive: true,
+    touchScrollStep: 12,
    
     //now scene num
     currentSceneNo: 0,
@@ -240,7 +241,7 @@ App.prototype= {
 
         var sensitiveDegree = 20;
         var scrollTop = 0;
-        var scrollStep = 12;
+        var scrollStep = this.touchScrollStep;
         var touchStart = 0;
         var deltaStep = 30;
         var deltaStepLength = 0;
@@ -271,7 +272,7 @@ App.prototype= {
                         });
                     } else {
                         self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").animate({
-                            translateY: -self.window.height + "px",
+                            translateY: - self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").height() + "px",
                         });
                     }
                 }
@@ -279,9 +280,9 @@ App.prototype= {
                 
                 
             }
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
+            //e.preventDefault();
+            //e.stopPropagation();
+            return true;
        }).on("touchmove", function(e){
             // if(endOnce === true){
             //     return false;
@@ -304,7 +305,7 @@ App.prototype= {
                     if(sceneNo < self.sceneCount - 1 ){
                         nextSceneNo = sceneNo +1;
                         self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").css({
-                            transform: "translateY(" + ( scrollTop + self.window.height) + "px" + ")",
+                            transform: "translateY(" + ( scrollTop + item.height()) + "px" + ")",
                         });
                     }
                 } else {
@@ -315,7 +316,7 @@ App.prototype= {
                     if(sceneNo >0){
                         nextSceneNo = sceneNo - 1;
                         self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").css({
-                            transform: "translateY(" + ( scrollTop - self.window.height) + "px" + ")",
+                            transform: "translateY(" + ( scrollTop - self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").height()) + "px" + ")",
                         });
                     }
                 }
@@ -381,8 +382,8 @@ App.prototype= {
             speed = "linear";
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNo +1;
-        this.currentSceneNo = nextIndex;
-        if(!this.touchSensitive){
+        
+        if(this.sceneDOMs.eq(this.currentSceneNo).attr("touch-sensitive") === undefined ){
             this.sceneDOMs.eq(nextIndex).css({
                 visibility: "visible",
                 transform: "translateY(" + app.window.height + "px" + ")",
@@ -391,7 +392,7 @@ App.prototype= {
         
        
         this.sceneDOMs.eq(sceneIndex).animate({
-            translateY: - app.window.height + "px",
+            translateY: - this.sceneDOMs.eq(this.currentSceneNo).height() + "px",
         }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
             $(this).css({
                 //visibility: 'hidden',
@@ -402,7 +403,7 @@ App.prototype= {
             translateY: 0,
             opacity: 1,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
-
+        this.currentSceneNo = nextIndex;
         
     },
     scrollPrev: function(nextIndex, fn, speed){
@@ -412,12 +413,12 @@ App.prototype= {
             speed = "linear";
         }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNo -1;
-        this.currentSceneNo = nextIndex;
+        
 
-        if(!this.touchSensitive){
+        if(this.sceneDOMs.eq(this.currentSceneNo).attr("touch-sensitive") === undefined ){
             this.sceneDOMs.eq(nextIndex).css({
                 visibility: "visible",
-                transform: "translateY(" + (- app.window.height) + "px" + ")",
+                transform: "translateY(" + (- this.sceneDOMs.eq(nextIndex).height()) + "px" + ")",
             });
         }
         
@@ -433,7 +434,7 @@ App.prototype= {
             translateY: 0,
             opacity: 1,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
-        
+        this.currentSceneNo = nextIndex;
 
     },
 
