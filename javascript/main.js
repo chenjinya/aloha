@@ -521,8 +521,12 @@ app.addAction({
         }
         $(".scene-6-map").attr("style", '');
         $(".scene-6-point").attr("style", '');
+
         $(".pics-wrap-btn-left").off("click")
         $(".pics-wrap-btn-right").off("click")
+        $(".scene-6-location-more").off("click");
+        $(".scene-6-location-ret").off("click");
+
         $(".scene-6-pics-wrap").attr("style", '');
         $(".scene-6-location-info").attr("style", '');
         $(".scene-6-location-more").attr("style", '');
@@ -671,7 +675,7 @@ app.addAction({
         .off("touchstart")
         .off("touchmove")
         .off("touchend");
-        
+
         $(".page-horn-4").hide();
     },
     next: function(){
