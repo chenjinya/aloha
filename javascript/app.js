@@ -279,6 +279,9 @@ App.prototype= {
     //common
     scrollNext: function(nextIndex, fn, speed){
         sceneIndex = this.currentSceneNum;
+        if(!$.os.iphone){
+            speed = "linear";
+        }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum +1;
 
         this.currentSceneNum = nextIndex;
@@ -286,7 +289,7 @@ App.prototype= {
             top: app.window.height,
             opacity: 1,
         });
-
+        
         this.sceneDOMs.eq(sceneIndex).animate({
             top: - app.window.height,
         }, speed ? speed : TURN_SPEED, 'ease-in-out');
@@ -299,6 +302,9 @@ App.prototype= {
     scrollPrev: function(nextIndex, fn, speed){
 
         sceneIndex = this.currentSceneNum;
+        if(!$.os.iphone){
+            speed = "linear";
+        }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum -1;
         this.currentSceneNum = nextIndex;
         this.sceneDOMs.eq(nextIndex).css({
@@ -319,6 +325,9 @@ App.prototype= {
 
     fadeInNext: function(nextIndex, fn, speed){
         sceneIndex = this.currentSceneNum;
+        if(!$.os.iphone){
+            speed = "linear";
+        }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum +1;
         this.currentSceneNum = nextIndex;
         this.sceneDOMs.eq(sceneIndex).animate({
@@ -337,6 +346,9 @@ App.prototype= {
     },
     fadeInPrev: function(nextIndex, fn, speed){
         sceneIndex = this.currentSceneNum;
+        if(!$.os.iphone){
+            speed = "linear";
+        }
         nextIndex = undefined !== nextIndex ? nextIndex : this.currentSceneNum -1;
         this.currentSceneNum = nextIndex;
    
