@@ -30,7 +30,7 @@ app.loading({
     if(i == c) {
         $(".app-loading").remove();
     }
-        $(".app-loading").find(".app-loading-bar").html("loading...(" + Math.ceil(i / c * 100 )+ "%)");
+    $(".app-loading").find(".app-loading-bar").html("loading...(" + Math.ceil(i / c * 100 )+ "%)");
 },
 
 function(){ 

@@ -170,9 +170,7 @@ body{
 	transition: null;
 }
 .scene-2{
-	background: url(../image/scene-2-background.png);
-	-webkit-background-size: cover;
-	        background-size: cover;
+	
 }
 
 .scene-2-banner, .scene-2-people, .scene-2-smoke {
@@ -182,7 +180,7 @@ body{
 .scene-2-people {
 	position: absolute;
 	bottom: 0em;
-	
+
 }
 
 .scene-2-banner {
@@ -226,9 +224,6 @@ body{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: url(../image/scene-3-background.png);
-	-webkit-background-size: cover;
-	        background-size: cover;
 	opacity: 0;
 }
 .scene-3-poster{
