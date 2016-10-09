@@ -74,9 +74,13 @@ app.addAction( {
         $(".loading-center").css({
             animation: 'loading-center 6s linear forwards ',
         });
-        $(".loading-center-bg").css({
-            animation: 'loading-center-bg 6s linear forwards ',
-        });
+        if(!$.os.iphone){
+            $(".loading-center-bg").remove();
+        } else {
+            $(".loading-center-bg").css({
+                animation: 'loading-center-bg 6s linear forwards ',
+            });
+        }
         $(".loading-center-circle-inner").css({
             animation: 'loading-inner 5s linear forwards ',
         });
@@ -618,10 +622,16 @@ app.addAction({
                 }
                 if(move < 0){
                     console.log('swipeup')
+                    if(scrollTop < $(this).height() - app.window.height ){
+                        return;
+                    }
                     scrollTop -= scrollStep;
-                   
+                    
                 } else {
                     console.log('swipedown')
+                    if(scrollTop < scrollStep && scrollTop >0){
+                        return;
+                    }
                     scrollTop += scrollStep;
                     ///return true;
                 }
