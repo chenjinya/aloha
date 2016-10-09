@@ -215,11 +215,9 @@ app.addAction({
 
             $(".scene-2-people").animate({
                 translateY: '100px',
-                opacity: 0,
             },1000);
             $(".scene-2-banner").animate({
                 translateY: '-100px',
-                opacity: 0,
             },1000);
         }
         
@@ -240,11 +238,13 @@ app.addAction({
         if(!$.os.iphone){ 
             return true; 
         }
-        $(".scene-2-shade-1").attr("style",'');
-        $(".scene-2-shade-2").attr("style",'');
-        $(".scene-2-smoke").attr("style",'');
-        $(".scene-2-people").attr("style",'');
-        $(".scene-2-banner").attr("style",'');
+        
+        $(".scene-2-people").css({
+            transform: "translateY(100px)",
+        });
+        $(".scene-2-banner").css({
+            transform: "translateY(-100px)",
+        });
 
     }
 });

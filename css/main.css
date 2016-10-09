@@ -182,7 +182,7 @@ body{
 .scene-2-people {
 	position: absolute;
 	bottom: 0em;
-	transform: translateY(100px);
+	
 }
 
 .scene-2-banner {
@@ -192,7 +192,6 @@ body{
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	transform: translateY(-100px);
 }
 
 .scene-2-smoke {
