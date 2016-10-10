@@ -1062,37 +1062,40 @@ body{
 	width:100%;
 	top:18%;
 }
+.scene-ticket-body-img{
+	width: 100%;
+}
 .ticket-a{
 	position: absolute;
     width: 22%;
-    height: 3%;
+    height: 6%;
 }
 
 .ticket-a-1{
-	top: 43%;
+	top: 32%;
     left: 14%;
 }
 .ticket-a-2{
-	top: 43%;
+	top: 32%;
     left: 64%;
 }
 
 .ticket-a-3{
-	top: 79%;
+	top: 83%;
     left: 14%;
 }
 
 .ticket-a-4{
-	top: 79%;
+	top: 83%;
     left: 64%;
 }
 
 .ticket-a-5{
-	top: 38%;
+	top: 22%;
     left: 65%;
 }
 .ticket-a-6{
-	top: 68%;
+	top: 66%;
     left: 65%;
 }
 .scene-8{
