@@ -1,10 +1,13 @@
 var app = new App();
 var soundStatus = false;
 var soundFn = function(e,status){
-    console.log("click");
+    //console.log("click");
     if(soundStatus == true || status == 1){
         $(".app-sound")[0].pause();
-        $(".app-sound-icon").attr("style",'');
+        $(".app-sound-icon").css({
+            animation:null,
+            backgroundImage: null,
+        });
         soundStatus = false;
     } else if(soundStatus == false  || status == 2){
         $(".app-sound")[0].play();
@@ -78,7 +81,7 @@ app.addAction( {
        
         //app.disableSwipe();
         var sceneIndex = 0;
-        console.log('scene 0');
+        //console.log('scene 0');
         
         $(".loading-center").css({
             animation: 'loading-center 6s linear forwards ',
@@ -146,7 +149,7 @@ app.addAction( {
 app.addAction({
     run: function(){
         //scene 1
-        console.log('scene 1');
+        //console.log('scene 1');
         var sceneIndex = 1;
         $(".page-wrap").css({
             opacity: 1,
@@ -231,7 +234,7 @@ app.addAction({
 
 
         //scene 2
-        console.log('scene 2');
+        //console.log('scene 2');
         var sceneIndex = 2;
         $(".scene-3-poster").css({
             opacity: 0,
@@ -292,7 +295,6 @@ app.addAction({
                 translateY: '-100px'
             });
         }
-        
         app.scrollNext();
         nx();
     }
@@ -320,7 +322,7 @@ app.addAction({
             },500);
         }
         
-        console.log('scene 9');
+        //console.log('scene 9');
         var sceneIndex = 9;
 
     }, 
@@ -334,7 +336,6 @@ app.addAction({
         $(".scene-9-right").css({
              transform: 'translateX(200px)',
         })
-       
     }
 
 });
@@ -342,7 +343,7 @@ app.addAction({
 app.addAction({
     run: function(){
         //scene 3
-        console.log('scene 3');
+        //console.log('scene 3');
         var sceneIndex = 3;
 
     }, 
@@ -355,7 +356,7 @@ app.addAction({
 app.addAction({
     run: function(){
         //scene 4
-        console.log('scene 4');
+        //console.log('scene 4');
         var sceneIndex = 4;
 
     }
@@ -365,7 +366,7 @@ app.addAction({
 app.addAction({
     run: function(){
         //scene 4
-        console.log('scene 5');
+        //console.log('scene 5');
         
         var sceneIndex = 5;
         if(!$.os.iphone){ 
@@ -539,7 +540,7 @@ app.addAction({
     run: function(){
 
        
-        console.log('scene 7');  
+        //console.log('scene 7');  
             
         $(window)
         .off("swipeUp")
@@ -608,7 +609,7 @@ app.addAction({
                 //console.log(e);
                 // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
                 
-                console.log('max top',maxTop,scrollTop,reachTop,reachBottom);
+                //console.log('max top',maxTop,scrollTop,reachTop,reachBottom);
                 if(scrollTop > 5 && 0 == reachTop){
                     reachTop = 1;
                     app.prev();
@@ -623,13 +624,13 @@ app.addAction({
                 //e.preventDefault();
                 //console.log(e.changedTouches[0].clientX)
                 var move = e.changedTouches[0].clientY - scrollPre;
-                console.log("move", move)
+                //console.log("move", move)
                 var moveLength = Math.abs(move);
                 if(moveLength < 1){
                     return false;
                 }
                 if(move < 0){
-                    console.log('swipeup')
+                    //console.log('swipeup')
                     if(scrollTop < maxTop - 10 ){
                         return false;
                     } else {
@@ -638,7 +639,7 @@ app.addAction({
                     
                     
                 } else {
-                    console.log('swipedown')
+                    //console.log('swipedown')
                     if( scrollTop > 10){
                         return false;
                     } else {
@@ -655,7 +656,7 @@ app.addAction({
                 // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
                 //     return false;
                 // }
-                console.log("scrollTop:",scrollTop);
+                //console.log("scrollTop:",scrollTop);
                 $(this).css({
                     transform: "translateY(" + scrollTop + "px" + ")",
                 });
