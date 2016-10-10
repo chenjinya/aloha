@@ -199,7 +199,12 @@ app.addAction({
         // $(".scene-2-shade-2").animate({
         //     width: "100%",
         // },1000);
-        app.fadeInNext();
+        if($.os.iphone){
+            app.fadeInNext();
+        } else {
+            app.scrollNext();
+        }
+        
         nx();
         //app.sceneDOMs.eq(2).fadeOut();
         

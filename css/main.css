@@ -164,7 +164,50 @@ body{
 	}
 }
 
+@-webkit-keyframes touch-tiping
+{
+	0% {
+		transform: translateY(-1em);
+	}
 
+	50% {
+		transform: translateY(0em);
+	}
+
+	100% {
+		transform: translateY(-1em);
+	}
+}
+
+@-moz-keyframes touch-tiping
+{
+	0% {
+		transform: translateY(-1em);
+	}
+
+	50% {
+		transform: translateY(0em);
+	}
+
+	100% {
+		transform: translateY(-1em);
+	}
+}
+
+@keyframes touch-tiping
+{
+	0% {
+		transform: translateY(-1em);
+	}
+
+	50% {
+		transform: translateY(0em);
+	}
+
+	100% {
+		transform: translateY(-1em);
+	}
+}
 
 
  .banner-section{
@@ -204,7 +247,15 @@ body{
  .banner-2-fadeOut{
  	opacity: 1;
  }
-
+.touch-tip{
+	position: absolute;
+	left: 0;
+	right: 0;
+	width:2em;
+	bottom: 1em;
+	margin: 0 auto;
+	animation: touch-tiping 1s infinite;
+}
 .scene{
 	color: #FFF;
 }
@@ -388,7 +439,7 @@ body{
 .scene-5-poster{
 	width: 100%;
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	left: 0;
 }
 
