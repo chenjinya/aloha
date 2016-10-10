@@ -33,12 +33,8 @@ app.loading({
         "./image/pics/pic2.png",
         "./image/pics/pic3.png",
         "./image/pics/pic4.png",
-        "./image/ticket/ticket-1.jpg",
-        "./image/ticket/ticket-2.jpg",
-        "./image/ticket/ticket-3.jpg",
-        "./image/ticket/ticket-4.jpg",
-        "./image/ticket/ticket-5.jpg",
-        "./image/ticket/ticket-6.jpg",
+        "./image/ticket-1-body.png",
+        "./image/ticket-2-body.png",
     ],
 },function(i,c){
     if(i == c) {
@@ -538,158 +534,15 @@ app.addAction({
 
 app.addAction({
     run: function(){
-
-       
-        //console.log('scene 7');  
-            
-        $(window)
-        .off("swipeUp")
-        .off("swipeDown");
         $(".page-horn-4").hide();
-                
-
-        var sceneIndex = 7;
-        var scrollPre = 0;
-        var scrollTop = 0;
-        var reachTop = 0;
-        var reachBottom = 0;
-        var scrollStep = app.touchScrollStep;
-        var maxTop = 0;
-        var moveStart = 0;
-        var emBasePx =  parseInt($(".ticket-href-section").css("font-size"));
-       // scrollStep = scrollStep * emBasePx;
-
-        $(".ticket-href-section").animate({
-            transform: "translateY(" + scrollTop + "px" + ")",
-        });
-        maxTop = $(window).height() - $(".ticket-href-section").height();
-
-
-        // if(!$.os.iphone){
-        //     $(".ticket-href-section")
-        //     .on('swipeUp', function(e){
-        //         $(this).animate({
-        //             translateY: maxTop + "px",
-        //         });
-                
-        //         if(scrollTop != 0){
-        //             app.next();
-        //             $(this).off("swipeUp");
-        //         } else {
-        //             scrollTop = maxTop;
-                    
-        //         }
-        //         e.preventDefault();
-        //         return false;
-
-        //     }).on('swipeDown', function(e){
-        //         $(this).animate({
-        //             translateY: 0,
-        //         });
-                
-        //         if(scrollTop != 0){
-        //             scrollTop = 0;
-                    
-        //         } else {
-        //             $(this).off("swipeDown");
-        //             app.prev();
-        //         }
-        //         e.preventDefault();
-        //         return false;
-                
-                
-        //     });
-        // } else {
-            $(".ticket-href-section")
-            .on("touchstart", function(e){
-                //console.log(e);
-                moveStart = e.changedTouches[0].clientY;
-            })
-            .on("touchend", function(e){
-                //console.log(e);
-                // maxTop = Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height());
-                
-                //console.log('max top',maxTop,scrollTop,reachTop,reachBottom);
-                if(scrollTop > 5 && 0 == reachTop){
-                    reachTop = 1;
-                    app.prev();
-                } else if(0 == reachBottom && scrollTop  <   maxTop){
-                    reachBottom = 1;
-                    app.next();
-                } else {
-
-                }
-            })
-            .on("touchmove", function(e){
-                //e.preventDefault();
-                //console.log(e.changedTouches[0].clientX)
-                var move = e.changedTouches[0].clientY - scrollPre;
-                //console.log("move", move)
-                var moveLength = Math.abs(move);
-                if(moveLength < 1){
-                    return false;
-                }
-                if(move < 0){
-                    //console.log('swipeup')
-                    if(scrollTop < maxTop - 10 ){
-                        return false;
-                    } else {
-                        scrollTop -= scrollStep;
-                    }
-                    
-                    
-                } else {
-                    //console.log('swipedown')
-                    if( scrollTop > 10){
-                        return false;
-                    } else {
-                        scrollTop += scrollStep;
-                    }
-                    
-                    ///return true;
-                }
-                scrollPre = e.changedTouches[0].clientY;
-                //console.log(rt);
-                // if(rt > moveDegree){
-                //     return false;
-
-                // } else if(rt <  - Math.floor(100 * ($(".ticket-href-section").height() - $(window).height()) / $(window).height())){
-                //     return false;
-                // }
-                //console.log("scrollTop:",scrollTop);
-                $(this).css({
-                    transform: "translateY(" + scrollTop + "px" + ")",
-                });
-                return false;
-                
-            });
-        // }
-        
-
-        // $(".scene-7-wrap").on("touchend", function(){
-            
-        // });
         
     }, 
-    init: function(){
-
-        $(".ticket-href-section")
-        .off("touchstart")
-        .off("touchmove")
-        .off("touchend");
-
+});
+app.addAction({
+    run: function(){
         $(".page-horn-4").hide();
-    },
-    next: function(){
-        $(".page-horn-4").show();
-        app.scrollNext();
-        app.loop();
-    },
-    prev: function(){
-        $(".page-horn-4").show();
-        app.scrollPrev();
-        app.loop();
-    }
+        
+    }, 
 });
 app.addAction({
     run: function(){

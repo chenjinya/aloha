@@ -1,5 +1,5 @@
 body{
-	//background: url(../image/scene-4-gogoboy-bg.jpg);
+	//background: url(../image/background.jpg);
 
 	-webkit-background-size: cover;
 
@@ -9,6 +9,7 @@ body{
 	 	transition: background 1s;
 
 }
+-webkit-tap-highlight-color:rgba(0,0,0,0);
 
 [page-scroll-body]{
 	position: absolute;
@@ -320,7 +321,7 @@ body{
 }
 
 .scene-4{
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 	-webkit-background-size: cover;
 	        background-size: cover;
 }
@@ -380,7 +381,7 @@ body{
 	        animation: gogoboy-strong 4s infinite;
 }
 .scene-5{
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 	-webkit-background-size: cover;
 	        background-size: cover;
 }
@@ -992,58 +993,58 @@ body{
     right: 0;
 }
 
-.scene-7{
+.scene-ticket-1, .scene-ticket-2{
 	overflow: hidden;
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 
 }
-.scene-7-wrap{
-	overflow: hidden;
+
+.scene-title{
 	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-    width: 100%;
-
-	
-}
-.scene-7-ticket{
-	position: absolute;;
+	top:10%;
 	width: 100%;
 }
-.ticket-href-section{
+
+.scene-ticket-body{
 	position: absolute;;
-	background: #5b5a58;
-	background: url(../image/scene-4-gogoboy-bg.jpg);
-	padding-bottom:5em;
-
-
+	width:100%;
+	top:20%;
 }
-.ticket-item{
-	position: relative;
-    width: 50%;
-    margin: 0;
-    padding: 0;
-    float: left;
+.ticket-a{
+	position: absolute;
+    width: 22%;
+    height: 3%;
 }
-.ticket-img{
-	width: 100%;
-    margin: 0;
-    padding: 0;
 
+.ticket-a-1{
+	top: 43%;
+    left: 14%;
 }
-.ticket-a {
-	display: block;
-    position: absolute;
-    margin: 0 auto;
-    bottom: 13%;
-    right: 0;
-    left: 0;
-    height: 15%;
-    width: 50%;
+.ticket-a-2{
+	top: 43%;
+    left: 64%;
+}
+
+.ticket-a-3{
+	top: 79%;
+    left: 14%;
+}
+
+.ticket-a-4{
+	top: 79%;
+    left: 64%;
+}
+
+.ticket-a-5{
+	top: 38%;
+    left: 65%;
+}
+.ticket-a-6{
+	top: 68%;
+    left: 65%;
 }
 .scene-8{
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 }
 .scene-8-banner{
 	width: 100%;
@@ -1053,7 +1054,7 @@ body{
 }
 
 .scene-9{
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 }
 .scene-9-bg{
 	width: 100%;
@@ -1065,7 +1066,7 @@ body{
 	width:48%;
 	position: absolute;
 	left: 0;
-	top: 16%;
+	top: 20%;
 
 
 }
@@ -1073,7 +1074,7 @@ body{
 	width:48%;
 	position: absolute;
 	right: 0;
-	top: 16%;
+	top: 20%;
 	
 }
 
@@ -1116,7 +1117,7 @@ body{
 }
 
 .scene-10{
-	background: url(../image/scene-4-gogoboy-bg.jpg);
+	background: url(../image/background.jpg);
 }
 .scene-10 video {
 	display: block;
