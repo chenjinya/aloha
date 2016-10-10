@@ -22,7 +22,7 @@ App.prototype= {
     touchSensitive: true,
     touchScrollStep: 12,
     touchDirection: 0,
-   
+    swipeDelta: 30,
     //now scene num
     currentSceneNo: 0,
     //scene zindex base
@@ -264,10 +264,10 @@ App.prototype= {
             touchStart = e.changedTouches[0].clientY;
         }).on("touchend", function(e){
             console.log("touchend")
-            if(deltaStep >= 30){
+            if(deltaStep > self.swipeDelta){
                 // endOnce = true;
                 // if(self.swipeable) self.prev();
-            } else if( deltaStep <= -30 ) {
+            } else if( deltaStep < - self.swipeDelta ) {
                 // endOnce = true;
                 // if(self.swipeable) self.next();
             } else {
@@ -286,8 +286,6 @@ App.prototype= {
                         translateY: - self.sceneDOMs.filter("[scene-no='" + (self.currentSceneNo - 1) + "']").height() + "px",
                     });
                 }
-                
-                
                 
             }
 
