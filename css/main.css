@@ -254,6 +254,7 @@ body{
 	width:2em;
 	bottom: 1em;
 	margin: 0 auto;
+	display: none;
 	animation: touch-tiping 1s infinite;
 }
 .scene{

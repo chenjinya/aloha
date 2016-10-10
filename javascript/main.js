@@ -110,6 +110,7 @@ app.addAction( {
                     app.sceneDOMs.eq(0).css({
                         background: '#120c0e',
                     })
+                    $(".touch-tip").show();
                 } else {
                     $bannerSecion.find(".banner-2").animate({
                         opacity: 1,
@@ -117,6 +118,7 @@ app.addAction( {
                         $bannerSecion.find(".banner-2").css({ 
                             animation: "banner-shining 4s ease-in-out infinite",
                         });
+                        $(".touch-tip").show();
                     });
                     app.sceneDOMs.eq(0).css({ 
                         animation: "banner-shining-bg 4s ease-in-out infinite",
