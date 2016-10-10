@@ -58,7 +58,7 @@ function(){
     })
     $(".page-horn-2").on("click", function(){
         if(app.currentSceneNo != 0){
-            app.next(0,true);
+          //  app.next(0,true);
         }
     });
 
@@ -740,7 +740,7 @@ app.addAction({
         
     }, 
     next: function(){
-       app.next(0);
+      // app.next(0);
     }
 });
 app.auto = false;
