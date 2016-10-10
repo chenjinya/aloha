@@ -117,7 +117,50 @@ body{
 	}
 }
 
+@-webkit-keyframes banner-shining-bg
+{
+	0% {
+		background-color: #120c0e;
+	}
 
+	50% {
+		background-color: #1f191b;
+	}
+
+	100% {
+		background-color: #120c0e;
+	}
+}
+
+@-moz-keyframes banner-shining-bg
+{
+	0% {
+		background-color: #120c0e;
+	}
+
+	50% {
+		background-color: #1f191b;
+	}
+
+	100% {
+		background-color: #120c0e;
+	}
+}
+
+@keyframes banner-shining-bg
+{
+	0% {
+		background-color: #120c0e;
+	}
+
+	50% {
+		background-color: #1f191b;
+	}
+
+	100% {
+		background-color: #120c0e;
+	}
+}
 
 
 
@@ -1057,12 +1100,13 @@ body{
 }
 
 .scene-10{
-
+	background: url(../image/scene-4-gogoboy-bg.jpg);
 }
 .scene-10 video {
 	display: block;
 	width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .play-video-btn{
 	position: absolute;

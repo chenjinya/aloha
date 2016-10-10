@@ -7,7 +7,7 @@ document.addEventListener('touchmove', function (event) {
 event.preventDefault();
 }, false);
 
-var TURN_SPEED = 1000;
+var TURN_SPEED = 500;
 var SCENE_DEPTH = 100;
 var App = function(){};
 App.prototype= {
@@ -21,6 +21,7 @@ App.prototype= {
 
     touchSensitive: true,
     touchScrollStep: 12,
+    touchDirection: 0,
    
     //now scene num
     currentSceneNo: 0,
@@ -38,7 +39,7 @@ App.prototype= {
 
     //scene done
     sceneDones: {},
-
+    sceneProcess: false,
     //scene action list
     sceneActions: [],
 
@@ -176,12 +177,10 @@ App.prototype= {
         for(var i in this.sceneActions){
             this.sceneDones[i] = false;
         }
-        this.sceneDOMs.eq(0).show().css({
-            translateY: 0,
-            opacity: 1,
-        });
-        this.loop();
-        this.bindEvent();
+
+
+
+       this.first();
     },
     loop: function(sceneNum){
         var self = this;
@@ -194,8 +193,8 @@ App.prototype= {
         this.currentSceneNo = sceneNum;
         this.currentSceneDepth = this.sceneDatas[sceneNum]["depth"];
         this.execAction = this.sceneActions[this.currentSceneNo];
+        this.unbindEvent();
         this.execAction.init && this.execAction.init();
-        this.bindEvent();
         this.execAction.run && this.execAction.run();
         this.sceneDones[sceneNum] = true;
         if(this.auto){
@@ -219,15 +218,27 @@ App.prototype= {
         .off("swipeUp")
         .off("swipeDown");
     },
-    bindEvent: function(){
-        var self = this;
-        console.log("bindEvent")
+    first: function(){
+        this.sceneDOMs.eq(this.currentSceneNo).show().css({
+            transform: "translateY(0)",
+            visibility: 'visible',
+            opacity: 1,
+        });
+        this.loop();
+        this.done();
+    },
+    unbindEvent: function(){
         $(window)
         .off("swipeUp")
         .off("swipeDown")
         .off("touchstart")
         .off("touchend")
-        .off("touchmove")
+        .off("touchmove");
+    },
+    bindEvent: function(){
+        var self = this;
+        console.log("bindEvent")
+        $(window)
         .one("swipeUp", function(e){
             console.log('app swiptup');
             if(self.swipeable) self.next();
@@ -265,31 +276,26 @@ App.prototype= {
                         translateY: 0,
                     });
                     console.log("next",nextSceneNo, self.window.height,deltaStep)
-                    if(deltaStep < 0 ){
-                         console.log("next",self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']"))
-                        self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").animate({
-                            translateY: self.window.height + "px",
-                        });
-                    } else {
-                        self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").animate({
-                            translateY: - self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']").height() + "px",
-                        });
-                    }
+                    var nextNo = self.currentSceneNo + 1;
+                    var prevNo = self.currentSceneNo - 1;
+                    // console.log("next",self.sceneDOMs.filter("[scene-no='" + nextSceneNo + "']"))
+                    self.sceneDOMs.filter("[scene-no='" + nextNo + "']").animate({
+                        translateY: self.window.height + "px",
+                    });
+                    self.sceneDOMs.filter("[scene-no='" + prevNo + "']").animate({
+                        translateY: - self.sceneDOMs.filter("[scene-no='" + (self.currentSceneNo - 1) + "']").height() + "px",
+                    });
                 }
                 
                 
                 
             }
-            //e.preventDefault();
-            //e.stopPropagation();
+
             return true;
        }).on("touchmove", function(e){
-            // if(endOnce === true){
-            //     return false;
-            // }
+
             deltaStep = e.changedTouches[0].clientY - touchStart;
             deltaStepLength = Math.abs(deltaStep);
-            //this.sceneDOMs.filter("[touch-sensitive]")
             if(deltaStepLength < sensitiveDegree){
                 return false;
             }
@@ -330,6 +336,10 @@ App.prototype= {
         
 
 
+    },
+    done: function(sceneNum){
+        this.bindEvent();
+        this.sceneProcess = true;
     },
     next: function(sceneNum,force){
         var self = this;
@@ -377,6 +387,7 @@ App.prototype= {
     },
     //common
     scrollNext: function(nextIndex, fn, speed){
+        var self = this;
         sceneIndex = this.currentSceneNo;
         if(!$.os.iphone){
             speed = "linear";
@@ -393,21 +404,26 @@ App.prototype= {
        
         this.sceneDOMs.eq(sceneIndex).animate({
             translateY: - this.sceneDOMs.eq(this.currentSceneNo).height() + "px",
-        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
-            $(this).css({
-                //visibility: 'hidden',
-            })
-        });
+        }, speed ? speed : TURN_SPEED, 'ease-in-out');
 
         this.sceneDOMs.eq(nextIndex).animate({
             translateY: 0,
             opacity: 1,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            self.done(nextIndex);
+        });
+
+        this.sceneDOMs.eq(sceneIndex-1).css({
+            transform: "translateY(" + (- app.window.height ) + "px" + ")",
+            opacity: 1,
+            visibility: "visible",
+        });
+
         this.currentSceneNo = nextIndex;
         
     },
     scrollPrev: function(nextIndex, fn, speed){
-
+        var self = this;
         sceneIndex = this.currentSceneNo;
         if(!$.os.iphone){
             speed = "linear";
@@ -425,20 +441,25 @@ App.prototype= {
         
         this.sceneDOMs.eq(sceneIndex).animate({
             translateY: app.window.height + "px",
-        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
-            $(this).css({
-                //visibility: 'hidden',
-            })
-        });
+        }, speed ? speed : TURN_SPEED, 'ease-in-out');
         this.sceneDOMs.eq(nextIndex).animate({
             translateY: 0,
             opacity: 1,
-        }, speed ? speed : TURN_SPEED, 'ease-in-out');
+        }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
+            self.done(nextIndex);
+        });
+
+        this.sceneDOMs.eq(sceneIndex + 1).animate({
+            transform: "translateY(" + (app.window.height) + "px" + ")",
+            opacity: 1,
+            visibility: "visible",
+        });
         this.currentSceneNo = nextIndex;
 
     },
 
     fadeInNext: function(nextIndex, fn, speed){
+        var self = this;
         sceneIndex = this.currentSceneNo;
         if(!$.os.iphone){
             speed = "linear";
@@ -458,14 +479,13 @@ App.prototype= {
             opacity: 0,
             translateY: 0,
         }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
-            $(this).css({
-               // visibility: 'hidden',
-            })
+            self.done(nextIndex);
         });
 
         
     },
     fadeInPrev: function(nextIndex, fn, speed){
+        var self = this;
         sceneIndex = this.currentSceneNo;
         if(!$.os.iphone){
             speed = "linear";
@@ -486,9 +506,7 @@ App.prototype= {
             opacity: 0,
             translateY: 0,
         }, speed ? speed : TURN_SPEED, 'ease-in-out', function(){
-            $(this).css({
-                //visibility: 'hidden',
-            })
+            self.done(nextIndex);
         });
         
     }

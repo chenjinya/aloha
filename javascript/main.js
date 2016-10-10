@@ -75,10 +75,7 @@ app.addAction( {
         if(app.sceneDones[0]){
             return false;
         } 
-        app.sceneDOMs.eq(0).css({
-            transform: "translateY(0)",
-            visibility: 'visible',
-        });
+       
         //app.disableSwipe();
         var sceneIndex = 0;
         console.log('scene 0');
@@ -110,6 +107,9 @@ app.addAction( {
                 if(!$.os.iphone){
                     $bannerSecion.find(".banner-2").css({
                         opacity: 1,
+                    });
+                    app.sceneDOMs.eq(0).css({
+                        background: '#120c0e',
                     })
                 } else {
                     $bannerSecion.find(".banner-2").animate({
@@ -118,19 +118,15 @@ app.addAction( {
                         $bannerSecion.find(".banner-2").css({ 
                             animation: "banner-shining 4s ease-in-out infinite",
                         });
-                    })
+                    });
+                    app.sceneDOMs.eq(0).css({ 
+                        animation: "banner-shining-bg 4s ease-in-out infinite",
+                    });
                 }
                 
-               
-                $("body").css({
-                    background: "#0f090a",
-                });
                 $(".scene-1").find(".banner-2").on("click", function(){
                     app.next(7,true);
                 });
-                
-                
-            
                 $(".page-wrap").css({
                     opacity: 1,
                 })
@@ -140,7 +136,7 @@ app.addAction( {
        
     },
     init: function(){
-        $("body").attr("style", '');
+        
      
     },
     prev: function(){},
@@ -562,7 +558,7 @@ app.addAction({
         var emBasePx =  parseInt($(".ticket-href-section").css("font-size"));
        // scrollStep = scrollStep * emBasePx;
 
-        $(".ticket-href-section").css({
+        $(".ticket-href-section").animate({
             transform: "translateY(" + scrollTop + "px" + ")",
         });
         maxTop = $(window).height() - $(".ticket-href-section").height();
