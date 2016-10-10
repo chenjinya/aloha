@@ -1053,14 +1053,14 @@ body{
 
 .scene-title{
 	position: absolute;
-	top:10%;
+	top:8%;
 	width: 100%;
 }
 
 .scene-ticket-body{
 	position: absolute;;
 	width:100%;
-	top:20%;
+	top:18%;
 }
 .ticket-a{
 	position: absolute;
@@ -1118,7 +1118,7 @@ body{
 	width:48%;
 	position: absolute;
 	left: 0;
-	top: 20%;
+	top: 18%;
 
 
 }
@@ -1126,7 +1126,7 @@ body{
 	width:48%;
 	position: absolute;
 	right: 0;
-	top: 20%;
+	top: 18%;
 	
 }
 
