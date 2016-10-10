@@ -622,10 +622,10 @@ app.addAction({
             .on("touchmove", function(e){
                 //e.preventDefault();
                 //console.log(e.changedTouches[0].clientX)
-                var move = e.changedTouches[0].clientY - moveStart;
+                var move = e.changedTouches[0].clientY - scrollPre;
                 console.log("move", move)
                 var moveLength = Math.abs(move);
-                if(moveLength < 10){
+                if(moveLength < 1){
                     return false;
                 }
                 if(move < 0){
@@ -647,6 +647,7 @@ app.addAction({
                     
                     ///return true;
                 }
+                scrollPre = e.changedTouches[0].clientY;
                 //console.log(rt);
                 // if(rt > moveDegree){
                 //     return false;
