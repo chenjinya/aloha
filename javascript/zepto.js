@@ -735,14 +735,27 @@
       if (type(property) == 'string') {
         if (!value && value !== 0)
           this.each(function(){ this.style.removeProperty(dasherize(property)) })
-        else
-          css = dasherize(property) + ":" + maybeAddPx(property, value)
+        else {
+          var prefixKey = key;
+          if(property == "animation" || property == "transform"){
+            prefixKey = $.fx.cssPrefix + property;
+          }
+          css = dasherize(prefixKey) + ":" + maybeAddPx(property, value)
+        }
+          
       } else {
         for (key in property)
           if (!property[key] && property[key] !== 0)
             this.each(function(){ this.style.removeProperty(dasherize(key)) })
-          else
-            css += dasherize(key) + ':' + maybeAddPx(key, property[key]) + ';'
+          else {
+            var prefixKey = key;
+            if(key == "animation" || key == "transform"){
+              prefixKey = $.fx.cssPrefix + key;
+            }
+            //alert(key)
+            css += dasherize(prefixKey) + ':' + maybeAddPx(key, property[key]) + ';'
+          }
+            
       }
 
       return this.each(function(){ this.style.cssText += ';' + css })
