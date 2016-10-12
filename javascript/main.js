@@ -5,7 +5,7 @@ var soundFn = function(e,status){
     if(soundStatus == true || status == 1){
         $(".app-sound")[0].pause();
         $(".app-sound-icon").css({
-            animation:null,
+            animation: '1',
             backgroundImage: null,
         });
         soundStatus = false;
